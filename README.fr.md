@@ -111,6 +111,10 @@ sudo ./ddeck                        # loopX → loopY
 cmp src.img dst.img && echo identiques
 ```
 
+## Licence
+
+[MIT](LICENSE)
+
 ## Développement
 
 ```
