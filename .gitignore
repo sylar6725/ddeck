@@ -1,0 +1,7 @@
+# compiled binary
+/ddeck
+*.exe
+*.test
+
+# local temp
+.gotmp/
