@@ -4,17 +4,7 @@
 
 ddeck est une interface texte (Linux) pour `dd` :
 
-```
-╭─ ① SOURCE ──────────────────╮╭─ ② DESTINATION ─────────────╮
-│ ▸ /dev/nvme0n1  NVMe 500 GB ││ ▸ /dev/sdb  USB  512 GB     │
-│   ● données (gpt: ext4)     ││   ○ vide  Kingston          │
-╰─────────────────────────────╯╰─────────────────────────────╯
-╭─ COPIES ───────────────────────────────────────────────────╮
-│ #1  /dev/nvme0n1 → /dev/sdb                    ● En cours  │
-│     [███████████████░░░░░░░░░░]  63%                       │
-│     312.4 GB / 500.1 GB   412 MB/s   ETA 02:15   écoulé …  │
-╰────────────────────────────────────────────────────────────╯
-```
+![ddeck avec deux copies en cours : cadres source et destination en haut, copies avec progression, vitesse et ETA en bas](screenshot/two-copies-fr.png)
 
 L'interface est en anglais par défaut. Appuyez sur `l` (ou `F2`) à tout moment pour passer en français, et inversement.
 
@@ -44,10 +34,32 @@ L'interface est en anglais par défaut. Appuyez sur `l` (ou `F2`) à tout moment
 
 ## Déroulement
 
+Les captures ci-dessous sont en anglais, la langue par défaut ; la touche `l` passe l'interface en français, comme sur la capture du haut.
+
 1. **Source** (cadre en haut à gauche) : choisir le disque à copier.
 2. **Destination** (cadre en haut à droite) : choisir le disque à écraser. Le disque système, les disques trop petits et ceux déjà pris par une copie ne sont pas sélectionnables.
-3. **Confirmation** : récapitulatif des deux disques, des vérifications et de la commande `dd` retenue. `O` pour lancer, ou `OUI` + Entrée si un risque d'inversion est détecté.
+
+   ![Liste des destinations : le disque système et les disques trop petits sont marqués en rouge et ne peuvent pas être choisis](screenshot/destination-blocked.png)
+
+   Les disques qui contiennent déjà des données sont signalés par ⚠ : on voit le risque avant de choisir.
+
+   ![Liste des destinations : les disques qui contiennent des données sont signalés](screenshot/destination-contains-data.png)
+
+3. **Confirmation** : récapitulatif des deux disques, des vérifications et de la commande `dd` retenue. `O` pour lancer (`Y` en anglais).
+
+   ![Confirmation : toutes les vérifications sont au vert, la commande dd exacte est affichée](screenshot/confirm-copy.png)
+
+   Les points mineurs apparaissent en jaune sans bloquer la copie, par exemple une source montée :
+
+   ![Confirmation avec un avertissement : la source est montée](screenshot/confirm-source-mounted.png)
+
+   Si la source paraît vide ou si la destination contient des données, ddeck soupçonne une inversion et demande de taper `OUI` + Entrée (`YES` en anglais) :
+
+   ![Alerte d'inversion : la source paraît vide et la destination contient des données, il faut taper le mot de confirmation](screenshot/swap-warning.png)
+
 4. **Copies** (cadre du bas) : suivi de la copie. On peut aussitôt en lancer une autre ; elle s'ajoute en dessous.
+
+   ![Une copie en cours, avec progression, vitesse, ETA et durée écoulée](screenshot/copy-running.png)
 
 ## Options dd selon le matériel
 

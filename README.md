@@ -4,17 +4,7 @@
 
 ddeck is a terminal user interface (Linux) for `dd`:
 
-```
-╭─ ① SOURCE ──────────────────╮╭─ ② DESTINATION ─────────────╮
-│ ▸ /dev/nvme0n1  NVMe 500 GB ││ ▸ /dev/sdb  USB  512 GB     │
-│   ● data (gpt: ext4)        ││   ○ empty  Kingston         │
-╰─────────────────────────────╯╰─────────────────────────────╯
-╭─ COPIES ───────────────────────────────────────────────────╮
-│ #1  /dev/nvme0n1 → /dev/sdb                    ● Running   │
-│     [███████████████░░░░░░░░░░]  63%                       │
-│     312.4 GB / 500.1 GB   412 MB/s   ETA 02:15   elapsed … │
-╰────────────────────────────────────────────────────────────╯
-```
+![ddeck copying a disk: source and destination panels at the top, running copy with progress, speed and ETA at the bottom](screenshot/copy-running.png)
 
 The interface is in English by default. Press `l` (or `F2`) at any time to switch to French and back.
 
@@ -46,8 +36,28 @@ The interface is in English by default. Press `l` (or `F2`) at any time to switc
 
 1. **Source** (top-left panel): pick the disk to copy.
 2. **Destination** (top-right panel): pick the disk to overwrite. The system disk, disks that are too small and disks already in use by a copy cannot be selected.
-3. **Confirmation**: a summary of both disks, the checks and the chosen `dd` command. Press `Y` to start, or type `YES` + Enter when a possible swap was detected.
-4. **Copies** (bottom panel): follow the copy. You can start another one right away; it is added below.
+
+   ![Destination list: the system disk and disks that are too small are marked in red and cannot be selected](screenshot/destination-blocked.png)
+
+   Disks that already hold data are flagged with ⚠, so you see the risk before you pick:
+
+   ![Destination list: disks that contain data are flagged with a warning](screenshot/destination-contains-data.png)
+
+3. **Confirmation**: a summary of both disks, the checks and the chosen `dd` command. Press `Y` to start.
+
+   ![Confirmation dialog: every check passed, with the exact dd command shown](screenshot/confirm-copy.png)
+
+   Minor issues show as a yellow warning but do not stop the copy, for example a mounted source:
+
+   ![Confirmation dialog with a warning: the source is mounted](screenshot/confirm-source-mounted.png)
+
+   When the source looks empty or the destination holds data, ddeck suspects a swap and asks you to type `YES` + Enter:
+
+   ![Swap warning: the source looks empty and the destination contains data, so YES must be typed](screenshot/swap-warning.png)
+
+4. **Copies** (bottom panel): follow the copy. You can start another one right away; it is added below. Press `l` to switch the interface to French:
+
+   ![Two copies running at the same time, interface in French](screenshot/two-copies-fr.png)
 
 ## dd options by hardware
 
