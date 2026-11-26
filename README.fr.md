@@ -4,7 +4,7 @@
 
 ddeck est une interface texte (Linux) pour `dd` :
 
-![ddeck avec deux copies en cours : cadres source et destination en haut, copies avec progression, vitesse et ETA en bas](screenshot/two-copies-fr.png)
+![ddeck avec deux copies en cours : cadres source et destination en haut, copies avec progression, vitesse et ETA en bas](screenshot/copy-running.png)
 
 L'interface est en anglais par défaut. Appuyez sur `l` (ou `F2`) à tout moment pour passer en français, et inversement.
 
@@ -59,7 +59,7 @@ Les captures ci-dessous sont en anglais, la langue par défaut ; la touche `l` p
 
 4. **Copies** (cadre du bas) : suivi de la copie. On peut aussitôt en lancer une autre ; elle s'ajoute en dessous.
 
-   ![Une copie en cours, avec progression, vitesse, ETA et durée écoulée](screenshot/copy-running.png)
+   ![Une copie en cours, avec progression, vitesse, ETA et durée écoulée](screenshot/two-copies-fr.png)
 
 ## Options dd selon le matériel
 
